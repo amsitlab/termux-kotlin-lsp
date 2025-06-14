@@ -25,6 +25,6 @@ jobs:
         env:
           PKG_VERSION: 1.3.13
         run: |
-          REVISION=$(data +%Y%m%d)
+          REVISION=$(date +%Y%m%d)
           ./termux-create-package --pkg-version "${PKG_VERSION}-${REVISION}" manifest.yml
           tree -a
