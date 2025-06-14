@@ -1,0 +1,6 @@
+#!/data/data/com.termux/files/usr/bin/sh
+
+XDG_DATA_HOME="${HOME}/.local/share"
+
+PROG=${XDG_DATA_HOME}/kotlin-language-server/bin/kotlin-language-server
+$PROG $@

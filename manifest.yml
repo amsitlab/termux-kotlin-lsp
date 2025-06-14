@@ -8,8 +8,12 @@ control:
   Description: Kotlin language server
 installation_prefix: /data/data/com.termux/files/usr
 data_files:
-    /data/data/com.termux/files/home/.local/bin/kotlin-language-server:
+    /data/data/com.termux/files/home/.local/share/kotlin-language-server/bin/kotlin-language-server:
       source: server/bin/kotlin-language-server
+      perm: 755
+
+    /data/data/com.termux/files/home/.local/bin/kotlin-language-server:
+      source: bin/kotlin-language-server
       perm: 755
 
     /data/data/com.termux/files/home/.local/share/kotlin-language-server/lib:
