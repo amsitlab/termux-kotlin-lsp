@@ -1,0 +1,17 @@
+control:
+  Package: kotlin-language-server
+  Version: 1.3.13
+  Architecture: all
+  Maintainer: Amsit S (dezavue3@gmail.com)
+  Depends: kotlin
+  Homepage: https://github.com/amsitlab/termux-kotlin-lsp
+  Description: Kotlin language server
+  installation_prefix: /data/data/com.termux/files/home/.local
+  data_files:
+    bin/kotlin-language-server:
+      source: server/bin/kotlin-language-server
+      perm: 6700
+
+    share/kotlin-language-server/lib:
+      source: server/lib
+      source_recurse: true
