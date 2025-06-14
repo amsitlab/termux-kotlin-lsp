@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y build-essential python curl
+          sudo apt install -y build-essential python3 curl
           curl -LO https://github.com/termux/termux-create-package/releases/latest/download/termux-create-package
           chmod a+x ./termux-create-package
           ./termux-create-package --help
