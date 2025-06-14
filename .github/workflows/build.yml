@@ -38,4 +38,6 @@ jobs:
           files: ${{ steps.vars.outputs.deb }}
           tag_name: "v${{ steps.vars.outputs.version }}"
           name: "Release ${{ steps.vars.outputs.version }}"
+        env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
