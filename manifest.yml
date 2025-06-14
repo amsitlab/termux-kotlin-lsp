@@ -10,7 +10,7 @@ installation_prefix: /data/data/com.termux/files/usr
 data_files:
     /data/data/com.termux/files/home/.local/bin/kotlin-language-server:
       source: server/bin/kotlin-language-server
-      perm: 6700
+      perm: 755
 
     /data/data/com.termux/files/home/.local/share/kotlin-language-server/lib:
       source: server/lib
