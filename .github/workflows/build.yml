@@ -28,7 +28,7 @@ jobs:
         env:
           PKG_VERSION: 1.3.13
         run: |
-          REVISION=$(date +%Y%m%d)
+          REVISION=$(date +%Y%m%d%H%M%S)
           rm -fr ./*.deb
           ./termux-create-package --pkg-version "${PKG_VERSION}-${REVISION}" manifest.yml
           echo "deb=kotlin-language-server_${PKG_VERSION}-${REVISION}_all.deb" >> $GITHUB_OUTPUT
