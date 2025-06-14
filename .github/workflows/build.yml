@@ -27,5 +27,14 @@ jobs:
           PKG_VERSION: 1.3.13
         run: |
           REVISION=$(date +%Y%m%d)
+          rm -fr ./*.deb
           ./termux-create-package --pkg-version "${PKG_VERSION}-${REVISION}" manifest.yml
+          echo "deb=kotlin-language-server_${PKG_VERSION}-${REVISION}_all.deb" >> $GITHUB_OUTPUT
+          echo "version=${PKG_VERSION}-${REVISION}" >> $GITHUB_OUTPUT
           tree -a
+      - name: Upload releases
+        with:
+          files: ${{ steps.vars.outputs.deb }}
+          tag_name: "v${{ steps.vars.outputs.version }}"
+          name: "Release ${{ steps.vars.outputs.version }}"
+
