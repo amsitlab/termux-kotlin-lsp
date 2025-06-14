@@ -6,8 +6,8 @@ control:
   Depends: kotlin
   Homepage: https://github.com/amsitlab/termux-kotlin-lsp
   Description: Kotlin language server
-  installation_prefix: /data/data/com.termux/files/home/.local
-  data_files:
+installation_prefix: /data/data/com.termux/files/home/.local
+data_files:
     bin/kotlin-language-server:
       source: server/bin/kotlin-language-server
       perm: 6700
