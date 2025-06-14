@@ -33,6 +33,7 @@ jobs:
           echo "version=${PKG_VERSION}-${REVISION}" >> $GITHUB_OUTPUT
           tree -a
       - name: Upload releases
+        uses: softprops/action-gh-release@v2
         with:
           files: ${{ steps.vars.outputs.deb }}
           tag_name: "v${{ steps.vars.outputs.version }}"
