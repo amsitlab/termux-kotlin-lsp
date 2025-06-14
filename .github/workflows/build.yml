@@ -17,7 +17,7 @@ jobs:
           curl -LO https://github.com/termux/termux-create-package/releases/latest/download/termux-create-package
           chmod a+x ./termux-create-package
 
-          curl -L "https://objects.githubusercontent.com/github-production-release-asset-2e65be/135159301/1591677d-faad-48bd-9664-db63f157396e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250614%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250614T074728Z&X-Amz-Expires=300&X-Amz-Signature=d75116a100fa4aaa42e8d964c2df408e6cbae06dfce93220dd580b777b06b9de&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dserver.zip&response-content-type=application%2Foctet-stream" -o server.zip
+          curl -L "https://github.com/fwcd/kotlin-language-server/releases/download/1.3.13/server.zip" -o server.zip
           unzip server.zip
           tree -a
           cat server/bin/kotlin-language-server
