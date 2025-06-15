@@ -1,6 +1,52 @@
-#!/data/data/com.termux/files/usr/bin/sh
+#!/data/data/com.termux/files/usr/bin/bash
+
+test "$1" = "--help" && {
+	echo "kotlin-language-server [options]"
+    echo "Options:"
+	echo "  --tcpServerPort | -sp <server-port>"
+	echo "  --tcpClientPort | -p  <client-port>"
+	echo "  --tcpClientHost | -h  <client-host>"
+	exit 1
+}
 
 XDG_DATA_HOME="${HOME}/.local/share"
+XDG_CONFIG_HOME="${HOME}/.config"
+CONFIG_DIR=${XDG_CONFIG_HOME}/kotlin-language-server
 
-PROG=${XDG_DATA_HOME}/kotlin-language-server/bin/kotlin-language-server
-$PROG $@
+
+APP_HOME=${XDG_DATA_HOME}/kotlin-language-server
+CLASSPATH=$(find ${APP_HOME}/lib -type f -name "*.jar" | tr '\n' ':')
+
+DEFAULT_JVM_OPTS="-DkotlinLanguageServer.version=1.3.13"
+# [ -n "$JAVA_OPTS" ] || JAVA_OPTS="-Xmx512M -Xms128M"
+: ${JAVA_OPTS:="-Dlog4j.configurationFile=${CONFIG_DIR}/log4j2.xml -Xmx512M -Xms128M"}
+: ${KLSP_LOG_FILE:="${TMPDIR}/kotlin-language-server.log"}
+export KLSP_LOG_FILE=$KLSP_LOG_FILE
+
+declare -a java_args
+declare -a klsp_args
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -D*)
+      java_args=("${java_args[@]}" "$1")
+      shift
+      ;;
+    -J*)
+      java_args=("${java_args[@]}" "${1:2}")
+      if [ "x${1:2}" = "x" ]; then
+        echo "error: empty -J argument"
+        exit 1
+      fi
+      shift
+      ;;
+    *)
+	  klsp_args=("${klsp_args[@]}" "$1")
+  esac
+done
+
+if [ -z "$JAVACMD" -a -n "$JAVA_HOME" -a -x "$JAVA_HOME/bin/java" ]; then
+    JAVACMD="$JAVA_HOME/bin/java"
+fi
+
+
+"${JAVACMD:=java}" $DEFAULT_JVM_OPTS $JAVA_OPTS "${java_args[@]}" -cp "$CLASSPATH" org.javacs.kt.MainKt "${klsp_args[@]}"

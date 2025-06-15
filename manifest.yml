@@ -19,3 +19,6 @@ data_files:
     /data/data/com.termux/files/home/.local/share/kotlin-language-server/lib:
       source: server/lib
       source_recurse: true
+
+    /data/data/com.termux/files/home/.config/kotlin-language-server/log4j2.xml:
+      source: log4j2.xml
